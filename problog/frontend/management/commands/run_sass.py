@@ -32,13 +32,11 @@ class Command(BaseCommand):
         parser.add_argument(
             '--missing',
             dest='missing_only',
-            type=bool,
             action='store_true'
         )
         parser.add_argument(
             '--make-all',
             dest='make_all',
-            type=bool,
             action='store_true'
         )
 
@@ -82,7 +80,7 @@ class Command(BaseCommand):
         failures = 0
         finished = []
         for th in target_themes:
-            scss_path = target / 'theme.scss'
+            scss_path = th / 'theme.scss'
             if not scss_path.exists():
                 self.stderr.write(f'\n\n{"-"*48}\nERROR: The "theme.scss" file is missing for the theme: "{th}". Please ensure the necessary SCSS resources are located in each theme\'s folder, otherwise this command will fail on it.')
                 self.stdout.write(f'\n\n{"-"*48}\nSkipping "{th}" and continuing to next target in list.')

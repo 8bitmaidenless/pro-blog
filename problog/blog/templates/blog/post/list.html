@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}No Outlet - Official Blog{% endblock %}
+{% block banner %}
+    <h1 class="title">
+        No Outlet - Official Blog
+    </h1>
+{% endblock %}
+{% block content %}
+    <div class="block">
+        {% for post in posts %}
+        <div class="block">
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-header-title" href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a>
+                    <p class="heading has-text-weight-light is-italic mt-2 mr-2">
+                        Published {{ post.publish }} by <strong>@{{ post.author.username }}</strong>
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="tags is-right">
+                        <span class="tag is-light has-text-weight-light is-italic">No tags</span>
+                    </div>
+                    <div class="content indented">
+                        {{ post.body|truncatewords:30|linebreaks }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block banner %}
+    <h1 class="title">{{ post.title }}</h1>
+    <p class="subtitle">
+        Published {{ post.publish }} by <strong>@{{ post.author.username }}</strong>
+    </p>
+{% endblock %}
+{% block content %}
+    <div class="box">
+        <div class="content indented">
+            {{ post.body|linebreaks }}
+        </div>
+    </div>
+{% endblock %}

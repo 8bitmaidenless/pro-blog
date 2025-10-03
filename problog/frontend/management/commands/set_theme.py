@@ -21,7 +21,7 @@ Configures the project to use the specified "theme" as the preferred CSS stylesh
         except Exception as err:
             self.theme_choices = []
         parser.add_argument('--theme', dest='theme', type=str, required=False, choices=self.theme_choices)
-        parser.add_argument('--random', dest='is_random', type=bool, action='store_true')
+        parser.add_argument('--random', dest='is_random', action='store_true')
 
     def handle(self, *args, **options):
         is_random = options.get('is_random', False)
@@ -51,6 +51,7 @@ Configures the project to use the specified "theme" as the preferred CSS stylesh
         with open(theme_env, 'w') as file:
             self.stdout.write(f'\n\n{"-"*48}\nINFO: Currently writing theme name "{theme}" to the Bulma Theme .env file.\nNOTICE: Never modify this file manually, only use this command to make changes to project theme config.')
             file.write(theme)
+            file.write('\n')
         self.stdout.write(
             f'\n\n{"-"*48}\nSUCCESS: The project\'s selected theme has been set from "{current_theme}" to "{theme}". You may refresh your browser in order to see these changes reflect on your site. If a refresh does not update the stylesheet in use, try reloading / restarting the server and / or clearing your browser cache of data for "localhost".'
         )
