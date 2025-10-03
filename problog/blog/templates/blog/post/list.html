@@ -4,6 +4,11 @@
     <h1 class="title">
         No Outlet - Official Blog
     </h1>
+    {% if tag %}
+    <p class="subtitle">
+        Posts for <strong>{{ tag.name }}</strong>
+    </p>
+    {% endif %}
 {% endblock %}
 {% block content %}
     <div class="block">
@@ -18,7 +23,12 @@
                 </div>
                 <div class="card-content">
                     <div class="tags is-right">
+                        {% for tag in post.tags.all %}
+                        <a class="tag is-{% cycle 'primary' 'link' %}" href="{% url 'blog:post_list_by_tag' tag.slug %}">{{ tag.name }}</a>
+                        {% empty %}
                         <span class="tag is-light has-text-weight-light is-italic">No tags</span>
+                        {% endfor %}
+                        {% resetcycle %}
                     </div>
                     <div class="content indented">
                         {{ post.body|truncatewords:30|linebreaks }}
