@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'blog.middleware.subdomain_blog_tags_middleware',
 ]
 
 ROOT_URLCONF = 'problog.urls'
@@ -120,3 +121,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 BULMA_THEME_ENV_PATH = BASE_DIR / 'problog/.bulmatheme'
 
     
+MEDIA_URL = 'media/'
+MEDIA_ROOT =  BASE_DIR / 'media'
