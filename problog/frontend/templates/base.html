@@ -118,6 +118,13 @@
                             {% block sidenav %}
                             {% endblock %}
                         </div>
+                        <div class="block">
+                            <div class="buttons is-centered">
+                                <a class="button is-link is-outlined is-medium is-fullwidth" href="{% url 'blog:post_feed' %}">
+                                    Subscribe to RSS feed
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {% endblock %}
