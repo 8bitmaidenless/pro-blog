@@ -11,7 +11,7 @@
         <div class="block">
             <div class="card">
                 <div class="card-header">
-                    <a class="card-header-title" href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a>
+                    <a class="card-header-title" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                     <p class="heading has-text-weight-light is-italic mt-2 mr-2">
                         Published {{ post.publish }} by <strong>@{{ post.author.username }}</strong>
                     </p>
