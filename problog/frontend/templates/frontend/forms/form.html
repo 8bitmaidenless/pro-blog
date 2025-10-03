@@ -1,0 +1,22 @@
+{% if form.non_field_errors %}
+<div class="message is-danger">
+    <div class="message-header">
+        <button type="button" class="delete"></button>
+    </div>
+    <div class="message-body">
+        <div class="content indented">
+            {% for non_field_error in form.non_field_errors %}
+            {{ non_field_error|linebreaks }}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% for field in form.hidden_fields %}
+{{ field }}
+{% endfor %}
+
+{% for field in form.visible_fields %}
+{% include "frontend/forms/field.html" %}
+{% endfor %}

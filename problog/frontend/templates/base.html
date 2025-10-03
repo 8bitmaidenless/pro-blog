@@ -1,0 +1,160 @@
+{% load static uitags %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+        
+        {% block css %}
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="{% theme_getstatic %}">
+        <style>
+            .indented {
+                text-indent: 30px;
+            }
+        </style>
+        {% block extra_css %}{% endblock %}
+        {% endblock %}
+    </head>
+    
+    <body>
+        <!-- Header -->
+        {% block header %}{% endblock %}
+
+        <!-- Hero Section -->
+        {% block hero %}
+        <section class="hero is-primary">
+            <div class="hero-head">
+                <nav class="navbar">
+                    <div class="container">
+                        <div class="navbar-brand">
+                            <a class="navbar-item is-size-4 has-text-weight-semibold" href="{% url 'blog:post_list' %}">
+                                <span>No Outlet - The Blog</span>
+                            </a>
+                            <a role="button" class="navbar-burger" data-target="nav-menu-main">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </a>
+                        </div>
+                        <div class="navbar-menu" id="nav-menu-main">
+                            <div class="navbar-start"></div>
+                            <div class="navbar-end">
+                                <a class="navbar-item" href="{% url 'blog:post_list' %}">Home</a>
+                                <div class="navbar-item has-dropdown is-hoverable">
+                                    <a class="navbar-link">Topics</a>
+                                    <div class="navbar-dropdown">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="hero-body">
+                <div class="container">
+                    <div class="content has-text-centered">
+                        {% block banner %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
+
+        <section class="section">
+            <div class="container">
+
+                <!-- Messages -->
+                {% block messages %}
+                {% if messages %}
+                <div class="messages columns is-desktop">
+                    <div class="column is-half is-offset-3">
+                        {% for message in messages %}
+                        <div class="notification {% if message.tags %}is-{{ message.tags|message_tag }}{% endif %}">
+                            <button type="button" class="delete"></button>
+                            <div class="content indented">
+                                {{ message|linebreaks }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endblock %}
+
+                <!-- Main Content Area -->
+                {% block content_area %}
+                <div class="columns is-desktop">
+                    <div class="column is-9">
+                        {% block content %}{% endblock %}
+                    </div>
+                    <div class="column is-3">
+                        <div class="block">
+                            {% block sidenav %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+                {% endblock %}
+            </div>
+        </section>
+
+        <!-- Modals -->
+        {% block modal %}{% endblock %}
+
+        <!-- Footer Section -->
+        {% block footer %}
+        <footer class="footer">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p>
+                        <strong>No Outlet</strong> blog built and maintained by
+                        <a href="https://github.com/8bitmaidenless" target="_blank">Dylan Garrett</a>
+                        with Django web-framework for Python and Bulma CSS V0.9.4.
+                    </p>
+                    <p>
+                        All source code is licensed under
+                        <a href="https://opensource.org/licenses/mit-license.php" target="_blank">MIT License</a>.
+                    </p>
+                    <p>
+                        &copy;2025
+                    </p>
+                </div>
+            </div>
+        </footer>
+        {% endblock %}
+
+        <!-- Javascript Area -->
+        {% block javascript %}
+        {% block include_js %}{% endblock %}
+        <style>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                    const $notification = $delete.parentNode;
+
+                    $delete.addEventListener('click', () => {
+                        $notification.parentNode.removeChild($notification);
+                    });
+                });
+
+                const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+                $navbarBurgers.forEach($el => {
+                    $el.addEventListener('click', () => {
+                        const target = $el.dataset.target;
+                        const $target = document.getElementById(target);
+
+                        $el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            });
+        </style>
+        {% block extra_js %}{% endblock %}
+        {% endblock %}
+
+    </body>
+</html>
