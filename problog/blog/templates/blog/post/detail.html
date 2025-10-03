@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load blogtags %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block banner %}
     <h1 class="title">{{ post.title }}</h1>
@@ -9,7 +10,7 @@
 {% block content %}
     <div class="box">
         <div class="content indented">
-            {{ post.body|linebreaks }}
+            {{ post.body|markdown }}
         </div>
     </div>
     <div class="columns is-centered">
