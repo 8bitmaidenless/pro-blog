@@ -67,3 +67,19 @@
         </div>
     </div>
 {% endblock %}
+{% block sidenav %}
+    <aside class="menu box">
+        <p class="menu-label is-size-5">Similar posts</p>
+        <ul class="menu-list">
+            {% for post in similar_posts %}
+            <li>
+                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            </li>
+            {% empty %}
+            <li>
+                <p class="is-italic">No similar posts to show here.</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </aside>
+{% endblock %}
