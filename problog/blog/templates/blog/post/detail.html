@@ -12,4 +12,11 @@
             {{ post.body|linebreaks }}
         </div>
     </div>
+    <div class="columns is-centered">
+        <div class="column is-fullwidth">
+            <div class="buttons is-right">
+                <a class="button is-link is-medium" href="{% url 'blog:post_share' post.id %}">Share this post</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

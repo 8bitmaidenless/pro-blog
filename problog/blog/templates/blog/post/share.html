@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load uitags %}
+{% block title %}Share this post{% endblock %}
+{% block banner %}
+    <h1 class="title">
+        {% if sent %}
+        <em>{{ post.title }}</em> shared!
+        {% else %}
+        Share <em>{{ post.title }}</em> via email
+        {% endif %}
+    </h1>
+{% endblock %}
+{% block content %}
+    <div class="columns">
+        <div class="column is-three-fifths">
+
+            {% if sent %}
+            <div class="block">
+                <div class="message is-success">
+                    <div class="message-body">
+                        <div class="content indented">
+                            <p>
+                                An email containing a link to <em>{{ post.title }}</em> has been delivered to the inbox at
+                                <strong>{{ form.cleaned_data.to }}</strong> along with your personal comments. You may use the button
+                                <strong>below</strong> to return to the original post.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <div class="buttons is-centered">
+                    <a class="button is-link is-fullwidth is-medium" href="{{ post.get_absolute_url }}">Return to post</a>
+                </div>
+            </div>
+            
+            {% else %}
+
+            <div class="box">
+                <form method="post">
+                    {{ form|bulma }}
+                    {% csrf_token %}
+                    <div class="field">
+                        <p class="control">
+                            <input type="submit" class="button is-primary is-fullwidth" value="Share post" />
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
