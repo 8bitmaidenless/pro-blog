@@ -14,19 +14,16 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-c%iy-)(bo7_=npvt+$lu+f=9!c$ojt#tq8qlwyz1i7y&zt@637'
+# SECRET_KEY = 'django-insecure-c%iy-)(bo7_=npvt+$lu+f=9!c$ojt#tq8qlwyz1i7y&zt@637'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 SITE_ID = 1
 # Application definition
@@ -77,17 +74,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'problog.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blog',
-        'USER': 'blog',
-        'PASSWORD': 'onefullsend23',
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -133,12 +119,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 BULMA_THEME_ENV_PATH = BASE_DIR / 'problog/.bulmatheme'
 
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    EMAIL_HOST = os.environ.get('EMAIL_HOST')
-    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-    EMAIL_PORT = int(os.environ.get('EMAIL_PORT') or 587)
-    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS') is not None
     
