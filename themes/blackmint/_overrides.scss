@@ -1,0 +1,95 @@
+// Navbar
+.navbar {
+    background-color: #1a1a1a;
+
+    .navbar-item,
+    .navbar-link {
+        color: $text;
+
+        &:hover {
+            background-color: darken($scheme-main, 5%);
+            color: $primary;
+        }
+    }
+}
+
+.hero {
+    background-color: $scheme-main;
+    color: $text-strong;
+}
+
+.card {
+    background-color: #1a1a1a;
+    color: $text;
+    box-shadow: $shadow;
+
+    .card-header,
+    .card-footer {
+        background-color: #1f1f1f;
+        border-color: $border;
+    }
+}
+
+.modal-card {
+    background-color: #1a1a1a;
+    color: $text;
+
+    .modal-card-head,
+    .modal-card-foot {
+        background-color: #1f1f1f;
+        border-color: $border;
+    }
+}
+
+.table {
+    background-color: #1a1a1a;
+    color: $text;
+
+    thead {
+        background-color: #1f1f1f;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #181818;
+    }
+    
+    tbody tr:hover {
+        background-color: #222;
+    }
+}
+
+.button {
+    &.is-primary {
+        background-color: $primary;
+        border-color: $primary;
+        color: #fff;
+
+        &:hover {
+            background-color: lighten($primary, 5%);
+        }
+    }
+}
+
+.input,
+.textarea,
+.select select {
+    background-color: #1f1f1f;
+    border-color: $border;
+    color: $text;
+
+    &:focus {
+        border-color: $primary;
+        box-shadow: 0 0 0 0.125em rgba($primary, 0.25);
+    }
+}
+
+.notification {
+    background-color: #1a1a1a;
+    border: 1px solid $border;
+    color: $text;
+}
+
+.footer {
+    background-color: #1a1a1a;
+    color: $text-light;
+}

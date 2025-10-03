@@ -1,0 +1,42 @@
+// Primary Color
+$primary: #3eb489 !default;
+$primary-invert: #fff !default;
+
+// Backgrounds
+$scheme-main: #121212 !default;
+$scheme-main-bis: #1a1a1a !default;
+$scheme-main-ter: #1f1f1f !default;
+
+$scheme-invert: #f5f5f5 !default;
+$scheme-invert-bis: #e0e0e0 !default;
+$scheme-invert-ter: #bdbdbd !default;
+
+// Text
+$text: #e9ecef !default;
+$text-strong: #ffffff !default;
+$text-light: #bdbdbd !default;
+
+// Links
+$link: $primary !default;
+$link-hover: lighten($primary, 10%) !default;
+$link-active: lighten($primary, 15%) !default;
+$link-visited: $primary !default;
+$link-focus-border: $primary !default;
+
+// Border colors
+$border: #2e2e2e !default;
+$border-hover: #3a3a3a !default;
+
+// Code blocks
+$code: #8ae6c1 !default;
+$code-background: #1c1c1c !default;
+$pre-background: #1c1c1c !default;
+
+// Other brand colors
+$info: #4dabf7 !default;
+$success: #51cf66 !default;
+$warning: #fcc419 !default;
+$danger: #ff6b6b !default;
+
+// Shadows
+$shadow: 0 0.5em 1em -0.125em rgba(0, 0, 0, 0.5), 0 0px 0 1px rgba(0, 0, 0, 0.05) !default;
