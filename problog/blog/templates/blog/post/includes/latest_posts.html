@@ -1,0 +1,10 @@
+<aside class="menu box">
+    <p class="menu-label is-size-5">Latest posts</p>
+    <ul class="menu-list">
+        {% for post in latest_posts %}
+        <li>
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</aside>
