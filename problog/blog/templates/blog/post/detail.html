@@ -19,4 +19,51 @@
             </div>
         </div>
     </div>
+    <div class="columns is-centered">
+        <div class="column is-fullwidth">
+            {% with comments.count as total_comments %}
+            <div class="block content">
+                <p class="is-size-4 has-text-centered has-text-weight-semibold">
+                    {{ total_comments }} Comment{{ total_comments|pluralize }}
+                </p>
+            </div>
+            {% endwith %}
+            
+            {% for comment in comments %}
+            <div class="block">
+                <div class="card has-background-{% cycle 'primary-dark' 'link-dark' %} m-auto has-text-light">
+                    <div class="card-header">
+                        <p class="card-header-title">{{ comment.name }}</p>
+                        <p class="heading has-text-weight-light is-italic mt-2 mr-2">
+                            Posted {{ comment.created|timesince }} ago
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="content indented">
+                            {{ comment.body|linebreaks }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="block">
+                <div class="notification is-info">
+                    <button type="button" class="delete"></button>
+                    <div class="content indented">
+                        <p>
+                            There are not yet any comments to show for this post. If you would like to be 
+                            the first to comment on this post, you can use the <strong>form below</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% resetcycle %}
+            <div class="columns">
+                <div class="column is-two-thirds">
+                    {% include "blog/post/includes/comment_form.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

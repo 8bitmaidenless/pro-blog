@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Add a comment{% endblock %}
+{% block banner %}
+    <h1 class="title">
+        {% if comment %}
+        Comment added!
+        {% else %}
+        Comment on <em>{{ post.title }}</em>
+        {% endif %}
+    </h1>
+{% endblock %}
+{% block content %}
+    <div class="columns">
+        <div class="column is-three-fifths">
+            {% if comment %}
+
+            <div class="block">
+                <div class="message is-success">
+                    <div class="message-body">
+                        <div class="content indented">
+                            <p>
+                                Your comment has been successfully added.
+                                You may use the button <strong>below</strong>
+                                to return to the original post and see your new comment 
+                                published along with the others.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <div class="buttons is-centered">
+                    <a class="button is-link is-fullwidth is-medium" href="{{ post.get_absolute_url }}">Return to post</a>
+                </div>
+            </div>
+
+            {% else %}
+
+            <div class="block">
+                {% include "blog/post/includes/comment_form.html" %}
+            </div>
+
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

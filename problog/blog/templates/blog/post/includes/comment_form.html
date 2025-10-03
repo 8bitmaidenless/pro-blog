@@ -1,0 +1,12 @@
+{% load uitags %}
+<div class="box">
+    <form action="{% url 'blog:post_comment' post.id %}" method="post">
+        {{ form|bulma }}
+        {% csrf_token %}
+        <div class="field">
+            <p class="control">
+                <input type="submit" class="button is-primary is-fullwidth" value="Add comment" />
+            </p>
+        </div>
+    </form>
+</div>

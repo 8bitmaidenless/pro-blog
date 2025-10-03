@@ -130,7 +130,7 @@
         <!-- Javascript Area -->
         {% block javascript %}
         {% block include_js %}{% endblock %}
-        <style>
+        <script>
             document.addEventListener('DOMContentLoaded', (event) => {
                 (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
                     const $notification = $delete.parentNode;
@@ -152,7 +152,7 @@
                     });
                 });
             });
-        </style>
+        </script>
         {% block extra_js %}{% endblock %}
         {% endblock %}
 
