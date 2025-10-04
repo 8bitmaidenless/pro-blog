@@ -1,30 +1,27 @@
 upstream uwsgi_app {
-    server      unix:/code/problog/uwsgi_app.sock;
+    server  unix:/code/problog/uwsgi_app.sock;
 }
 
 server {
     listen      80;
-    server_name     *.no-outlet-blog.xyz no-outlet-blog.xyz;
-    return 301 https://$host$request_uri;
+    server_name     www.austinoutdoorcraft.com austinoutdoorcraft.com;
+    return    301 https://$host$request_uri;
 }
 
 server {
     listen      443 ssl;
-    ssl_certificate     /code/problog/ssl/problog.crt;
-    ssl_certificate_key     /code/problog/ssl/problog.key;
-    server_name     *.no-outlet-blog.xyz no-outlet-blog.xyz;
+    ssl_certificate     /code/problog/ssl/self.crt;
+    ssl_certificate_key /code/problog/ssl/self.key;
+    server_name     www.austinoutdoorcraft.com austinoutdoorcraft.com;
     error_log       stderr warn;
     access_log      /dev/stdout main;
+
     location / {
         include     /etc/nginx/uwsgi_params;
-        uwsgi_pass      uwsgi_app;
+        uwsgi_pass  uwsgi_app;
     }
 
     location /static/ {
-        alias      /code/problog/static/;
-    }
-
-    location /media/ {
-        alias       /code/problog/media/;
+        alias   /code/problog/static/;
     }
 }

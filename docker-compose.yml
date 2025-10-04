@@ -8,22 +8,18 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
   web:
     build: .
-    # command: ["./wait-for-it.sh", "db:5432", "--",
-    #     "python", "/code/problog/manage.py", "runserver", "0.0.0.0:8000"]
     command: ["./wait-for-it.sh", "db:5432", "--",
         "uwsgi", "--ini", "/code/config/uwsgi/uwsgi.ini"]
     restart: always
     volumes:
       - .:/code
+    ports:
+      - "8000:8000"
     environment:
       - DJANGO_SETTINGS_MODULE=problog.settings.prod
-      - EMAIL_HOST=smtp.gmail.com
-      - EMAIL_HOST_USER=garrettdylan0702@gmail.com
-      - EMAIL_HOST_PASSWORD=xtffssdatnenuoui
-      - EMAIL_PORT=587
-      - EMAIL_USE_TLS=True
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -38,3 +34,4 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      
